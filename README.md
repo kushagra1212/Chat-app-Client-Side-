@@ -1,1 +1,1 @@
-Client Side code for the react chat app
+Client Side code for the react chat app also used Socket.io, React router
