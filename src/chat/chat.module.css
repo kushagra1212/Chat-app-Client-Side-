@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+*{
+  
+    padding: 0%;   
+       margin: 0%; 
+       
+      
+   }
+   .maindiv
+   {
+   
+       background-color: #FFFFFF;
+       height: 100vh; 
+       overflow: hidden;
+       scroll-behavior: smooth;
+   }
+   .headerdiv{
+       z-index: 5;
+       position: sticky;
+    width:80%;
+       justify-content: center;
+       text-align: center;
+          left:10%;
+       color:rgb(233, 83, 83);
+       border:2px solid rgba(0, 0, 0, 0);
+       border-radius: 30px;
+       height:5%;
+       top:1%;
+     box-shadow: 2px 2px 20px 2px grey;
+       
+       font-family: 'Lobster Two', cursive;
+
+       overflow: hidden;
+   
+   }
+   .messagediv{
+        background-color:  #FFFFFF;
+        height: 85vh;
+        margin:0%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column;
+        overflow: scroll;
+        scroll-behavior: smooth;
+      overflow-x: hidden;
+        box-shadow: 2px 2px 20px 2px rgba(128, 128, 128, 0);
+        overflow-wrap: break-word;
+       }
+   
+   
+    .inputdiv
+    { 
+       z-index: 10;
+   
+    width: 80%;
+    background-color: mintcream;
+    left:10%;
+    bottom: 5%;
+   position: sticky;
+    display: flex;
+   
+    border: 5px solid white;
+    border-radius: 25px;
+    
+    box-shadow: 2px 2px 20px 7px rgba(128, 128, 128, 0.719);
+   
+        }
+   .inputdiv textarea{
+       z-index: 5;
+       padding: 2%;
+       outline: none;
+       resize: none;
+       width:70%;
+       margin-left:10px;
+       
+       border: 5px solid white;
+       box-shadow: 2px 2px 5px 2px rgb(243, 239, 239);
+       border-radius: 25px;
+     
+      
+      
+     overflow-wrap: break-word;
+   }
+   .inputdiv button{
+       position: relative;
+       width:20%;
+       height: 40px;
+       top:5px;
+       left:5px;
+       background: url('../sendicon.png') no-repeat center;
+       
+       background-size: 35px 35px;
+       
+      border: none;
+      outline: none;
+      scroll-behavior: smooth;
+     
+      transition:  10s linear ease-in-out,left 10s linear ease-in-out;
+     
+   }
+   ::-webkit-scrollbar {
+     width: 0.5em;
+   }
+   ::-webkit-scrollbar-track {
+     box-shadow: inset 0 0 5px rgba(128, 128, 128, 0);
+     border-radius: 5px;
+   }
+   ::-webkit-scrollbar-thumb {
+     background: rgb(153, 231, 218);
+     border-radius: 10px;
+   }
+   .inputdiv button:active{
+       background-size:30px 30px;
+       left:10px;
+       
+   }
+   .message{
+    min-width: 10%;
+
+   }
+   .message  div{
+     position: relative;
+    
+    
+    max-width: 70%;
+      
+      padding: 5%;
+      margin:3%;
+       background-color: #e3e6e7;
+       color:black;
+      
+      
+       border: 5px solid #e3e6e7;
+       border-radius: 25px;
+       overflow-wrap: break-word;
+       float: left; 
+        }
+        .message div h6{
+          
+     color: white;
+      position: absolute;
+      top:2%;
+      right:4%;
+      
+      border:1px solid rgba(255, 255, 255, 0);
+      border-radius: 20px;
+        }
+
+    .popup div{
+      position: absolute;
+      padding: 2%;
+     
+        max-width: 50%;
+      margin: 3%;
+        left:30%;
+        
+         background-color: #9a4df1;
+         color:black;
+        z-index: 20;
+         overflow-wrap: break-word;
+         border: 5px solid #f55aa700;
+         border-radius: 25px;
+         box-shadow: 2px 2px 20px 7px rgba(250, 61, 61, 0.719);
+       
+          }
+          .popup{
+            z-index: 10;
+            opacity: 1;
+            -moz-animation: cssAnimation 5s;
+            /* Firefox */
+            -webkit-animation: cssAnimation 5s;
+            /* Safari and Chrome */
+            -o-animation: cssAnimation 5s;
+            /* Opera */
+            animation: cssAnimation 5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;;
+           
+          }
+          @-webkit-keyframes  cssAnimation
+          {
+           to{
+          opacity: 0;           }
+          }
+          
+          @keyframes  cssAnimation
+          {
+           to{
+            opacity: 0;
+           }
+          }
+    
+   .ownmessage div{
+         
+          position: relative;
+    padding: 5%;
+    max-width: 70%;
+    margin:3%;
+     background-color:  #01A0E1;
+     border: 5px solid #01A0E1;
+       border-radius: 25px;
+       
+     color:white;
+     
+    
+     float: right;
+     overflow-wrap: break-word;
+               }
+    .ownmessage div h6{
+     color: white;
+     border:1px solid rgba(255, 255, 255, 0);
+      border-radius: 20px;
+      position: absolute;
+      top:2%;
+      right:4%;
+    }
+   
+   
+    
+   

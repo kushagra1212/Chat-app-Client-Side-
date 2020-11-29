@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React,{useEffect,useState} from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Chat from './chat/Chat';
+import Join from './join/Join';
+import styles from "./app.module.css"
+const  App=()=>
+{
+    return(
+        <div className={styles.appdiv}>
+            
+            <Router>
+                <Route path={'/Chat'} component={Chat} />
+                <Route path={'/'} exact component={Join}  />
+                
+            </Router>
+
+        </div>
+    )
+
 }
-
 export default App;
