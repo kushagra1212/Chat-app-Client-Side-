@@ -165,7 +165,10 @@
        
           }
           .popup{
-            z-index: 10;
+            z-index: 30;
+            
+            position: sticky;
+            top:10px;
             opacity: 1;
             -moz-animation: cssAnimation 5s;
             /* Firefox */
@@ -173,21 +176,26 @@
             /* Safari and Chrome */
             -o-animation: cssAnimation 5s;
             /* Opera */
-            animation: cssAnimation 5s;
+            animation: cssAnimation 3s ease-in-out;
             -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;;
+            animation-fill-mode: forwards;
+            animation-delay: 2s;
            
           }
           @-webkit-keyframes  cssAnimation
           {
            to{
-          opacity: 0;           }
+          opacity: 0;  
+        top:-500px;  
+      display: none;       }
           }
           
           @keyframes  cssAnimation
           {
            to{
             opacity: 0;
+            display: none;
+            top:-500px;
            }
           }
     
