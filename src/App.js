@@ -12,7 +12,7 @@ const  App=()=>
             
             <Router>
                 <Route path={'/Chat'} component={Chat} />
-                <Route path={'/'} exact component={Join}  />
+                <Route path={'/chat-app'} exact component={Join}  />
                 
             </Router>
 

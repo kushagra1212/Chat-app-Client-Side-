@@ -5,8 +5,11 @@ import chatimg from "./chaticon.png";
 import Styles from "./chat.module.css";
 import usersicon from './Users-icon.png'
 import Users from '../Users/Users'
+
 const ENDPOINT = "https://chat-application11.herokuapp.com/";
+
 var socket;
+
 
 const Chat = ({ location }) => {
   const [mess, setmess] = useState("");
