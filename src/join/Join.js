@@ -4,27 +4,27 @@ import "./join.css";
 const Join = () => {
   const [name, setname] = useState("");
   const [room, setroom] = useState("");
-  const [password, setpassword] = useState("");
+  //const [password, setpassword] = useState("");
   const [incorrect, setincorrect] = useState(false);
   const [errorname, seterrorname] = useState(null);
   const [errorroom, seterrorroom] = useState(null);
-  const [errorpassword, seterrorpassword] = useState(null);
+ // const [errorpassword, seterrorpassword] = useState(null);
 
   useEffect(() => {
-    if (room && name && password) setincorrect(false);
-  }, [room, name, password]);
+    if (room && name ) setincorrect(false);
+  }, [room, name]);
   const submithandle = (e) => {
     if (name.length < 2) {
       setincorrect(true);
       seterrorname("User name should be Greater than 2 character");
       e.preventDefault();
     } else seterrorname("");
-    if (!password) {
+   /* if (!password) {
       setincorrect(true);
       seterrorpassword(`Enter your password`);
       e.preventDefault();
     } else seterrorpassword("");
-
+*/
     if (!room) {
       setincorrect(true);
       seterrorroom("Enter your room");
@@ -45,12 +45,12 @@ const Join = () => {
         onChange={(e) => setname(e.target.value)}
       />
       {<label style={{ color: "red" }}>{errorname}</label>}
-      <input
+   {/*}   <input
         type="password"
         onChange={(e) => setpassword(e.target.value)}
         placeholder="Key"
       />
-      {<label style={{ margibcolor: "red" }}>{errorpassword}</label>}
+      {<label style={{ margibcolor: "red" }}>{errorpassword}</label>}  */}
       <input
         type="text"
         placeholder="Enter room number"
