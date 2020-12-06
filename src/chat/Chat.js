@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import querystring from "query-string";
 import io from "socket.io-client";
 import chatimg from "./chaticon.png";
 import Styles from "./chat.module.css";
 import usersicon from './Users-icon.png'
 import Users from '../Users/Users'
+import Axios from '../Axios'
 
 const ENDPOINT = "https://chat-application11.herokuapp.com/";
 
+
 var socket;
+
+ 
 
 
 const Chat = ({ location }) => {
@@ -20,10 +24,15 @@ const Chat = ({ location }) => {
   const [admin, setadmin] = useState([]);
   const [nameusers,setnameusers]=useState([]);
   const [showusers,setshowusers]=useState(false);
+  const [content,setcontent]=useState([]);
+
+
+   const messageEndRef=useRef(null)
+   
   useEffect(() => {
     const { name, room } = querystring.parse(location.search);
     
-   
+    
     setroom(room);
     socket = io.connect(ENDPOINT);
     socket.emit("join", { name: name, room: room });
@@ -65,13 +74,17 @@ if(showusers)
         ...old,
         { messagee: ma.mas, right: false, name: ma.name, bgcol: ma.bgcol },
       ]);
+
+      setcontent((old)=>[...old,{ messagee: ma.mas, right: false, name: ma.name, bgcol: ma.bgcol,room:ma.room }]);
       
     });
     socket.on("onmyside", (ms) => {
       setallmess((old) => [
         ...old,
-        { messagee: ms.mas, right: true, name: "you", bgcol: ms.bgcol },
+        { messagee: ms.mas, right: true, name: "you", bgcol: ms.bgcol }
       ]);
+
+      setcontent((old)=>[...old,{ messagee: ms.mas, right: true, name: "you", bgcol: ms.bgcol,room:ms.room }])
     });
     socket.on('hereareusers',(us)=>
     {
@@ -79,24 +92,36 @@ if(showusers)
      
     })
     
+  
   }, []);
- 
+useEffect(()=>{
+  messageEndRef.current.scrollIntoView({behavior:"smooth"})
+})
  
     
 
-  const sendbuthandle = () => {
-    if (mess) socket.emit("sendmessage", mess);
-
-    setmess("");
+  const sendbuthandle =async () => {
+    if (mess) {
+      socket.emit("sendmessage", mess);
+      setmess("");
+    
+    }
+    await Axios.post('/messages',content).catch(err=>console.log(err));
+    
+   
   };
 
   return (
+  
+    
+    <>
+    <button className={Styles.usersname} onClick={getusers}><img alt="" src={usersicon} width="30px" height="30px" /></button>
     <div className={Styles.maindiv}>
       <div className={Styles.headerdiv}>
         Chat Room :-{room}{" "}
         <img width="20px" height="20px" src={chatimg} alt="NAN" />
       </div>
-      <button className={Styles.usersname} onClick={getusers}><img alt="" src={usersicon} width="30px" height="30px" /></button>
+      
   <Users nameusers={nameusers} showusers={showusers} />
       <div className={Styles.messagediv}>
         {admin.map((entrymessage, id) => (
@@ -126,6 +151,7 @@ if(showusers)
             </div>
           )
         )}
+        <div ref={messageEndRef}/> 
       </div>
 
       <div className={Styles.inputdiv}>
@@ -138,6 +164,7 @@ if(showusers)
         <button onClick={sendbuthandle}></button>
       </div>
     </div>
+    </> 
   );
 };
 
