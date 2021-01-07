@@ -5,10 +5,11 @@ import chatimg from "./chaticon.png";
 import Styles from "./chat.module.css";
 import usersicon from './Users-icon.png'
 import Users from '../Users/Users'
-import Axios from '../Axios'
+
 
 const ENDPOINT = "https://chat-application11.herokuapp.com/";
 
+//const ENDPOINT = "http://localhost:8000";
 
 var socket;
 
@@ -25,7 +26,8 @@ const Chat = ({ location }) => {
   const [nameusers,setnameusers]=useState([]);
   const [showusers,setshowusers]=useState(false);
   const [content,setcontent]=useState([]);
-
+  console.log(content)
+const [loading,setloading]=useState(true);
 
    const messageEndRef=useRef(null)
    
@@ -33,11 +35,12 @@ const Chat = ({ location }) => {
     const { name, room } = querystring.parse(location.search);
     
     
-    setroom(room);
+   
     socket = io.connect(ENDPOINT);
     socket.emit("join", { name: name, room: room });
-
+    setroom(room);
     socket.on("welcomemessage", (ad) => {
+      socket.connected?setloading(false):setloading(true);
       setadmin((oldadmin) => [...oldadmin, ad.mass]);
       setroom(ad.rom);
      
@@ -95,7 +98,7 @@ if(showusers)
   
   }, []);
 useEffect(()=>{
-  messageEndRef.current.scrollIntoView({behavior:"smooth"})
+ if(!loading)  messageEndRef.current.scrollIntoView({behavior:"smooth"})
 })
  
     
@@ -106,14 +109,19 @@ useEffect(()=>{
       setmess("");
     
     }
-    await Axios.post('/messages',content).catch(err=>console.log(err));
+    
     
    
   };
-
+if(loading)
+{
+  return(<div>
+    loading
+  </div>)
+}
   return (
   
-    
+  
     <>
     <button className={Styles.usersname} onClick={getusers}><img alt="" src={usersicon} width="30px" height="30px" /></button>
     <div className={Styles.maindiv}>
