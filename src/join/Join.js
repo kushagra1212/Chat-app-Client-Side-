@@ -33,7 +33,7 @@ const history=useHistory();
       e.preventDefault();
     } else seterrorroom("");
     if(name && password && room){
- axios.get(`${url}/user?name=${name}&password=${password}`).then((res)=>{
+ axios.get(`${url}user?name=${name}&password=${password}`).then((res)=>{
   console.log(res.data);
  
   history.push(`/chat?name=${name}&room=${room}`)

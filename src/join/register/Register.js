@@ -13,6 +13,7 @@ const Register =({runregister})=>{
  if(email.includes("@") && name && password && email){
 
 setloading(true);
+console.log(url);
 axios.post(`${url}post`,{
     name:name,password:password,email:email
 }).then(()=>{
