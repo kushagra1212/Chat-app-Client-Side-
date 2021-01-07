@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import {  useHistory } from "react-router-dom";
 import Register from './register/Register'
 import Styles from './join.module.css'
 import axios from "axios";
@@ -8,7 +8,7 @@ const Join = () => {
   const [name, setname] = useState("");
   const [room, setroom] = useState("");
   const [password, setpassword] = useState("");
-  const [incorrect, setincorrect] = useState(true);
+ 
   const [errorname, seterrorname] = useState(null);
   const [errorroom, seterrorroom] = useState(null);
   const [register,setregister]=useState(false);
@@ -17,28 +17,28 @@ const history=useHistory();
 
   const submithandle = (e) => {
     if (!name ) {
-      setincorrect(true);
+    
       seterrorname("Enter User name ");
       e.preventDefault();
     } else seterrorname("");
     if (!password) {
-      setincorrect(true);
+  
       seterrorpassword(`Enter your password`);
       e.preventDefault();
     } else seterrorpassword("");
 
     if (!room) {
-      setincorrect(true);
+  
       seterrorroom("Enter your room");
       e.preventDefault();
     } else seterrorroom("");
     if(name && password && room){
  axios.get(`${url}/user?name=${name}&password=${password}`).then((res)=>{
   console.log(res.data);
-  setincorrect(false);
+ 
   history.push(`/chat?name=${name}&room=${room}`)
 }).catch(err=>{console.log(err)
-setincorrect(true);
+
  alert('Please Register First ');
 })
     }
