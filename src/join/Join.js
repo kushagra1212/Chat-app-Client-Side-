@@ -61,7 +61,7 @@ const runregister=()=>{
         type="text"
         placeholder="User name"
         value={name}
-        onChange={(e) => setname(e.target.value.substr(0,8))}
+        onChange={(e) => setname(e.target.value.toLowerCase().substr(0,8))}
       />
       {<label style={{ color: "red" }}>{errorname}</label>}
       <input
