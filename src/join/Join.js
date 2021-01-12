@@ -4,6 +4,7 @@ import Register from './register/Register'
 import Styles from './join.module.css'
 import axios from "axios";
 import url from '../url/url';
+import ballLoading from './images/Ball-CrossLoading.gif'
 const Join = () => {
   const [name, setname] = useState("");
   const [room, setroom] = useState("");
@@ -13,9 +14,11 @@ const Join = () => {
   const [errorroom, seterrorroom] = useState(null);
   const [register,setregister]=useState(false);
   const [errorpassword, seterrorpassword] = useState(null);
+  const [loading,setloading]=useState(false);
 const history=useHistory();
 
   const submithandle = (e) => {
+    setloading(true);
     if (!name ) {
     
       seterrorname("Enter User name ");
@@ -34,9 +37,10 @@ const history=useHistory();
     } else seterrorroom("");
     if(name && password && room){
  axios.get(`${url}user?name=${name}&password=${password}`).then((res)=>{
-  console.log(res.data);
+  setloading(false);
  
   history.push(`/chat?name=${name}&room=${room}`)
+
 }).catch(err=>{console.log(err)
 
  alert('Please Register First ');
@@ -50,8 +54,9 @@ const runregister=()=>{
   return (
     <>
     {register?<Register  runregister={runregister}   />:
+
     <div className={Styles.maindiv}>
-       
+       {loading?<img className={Styles.loadingimg} alt="Loading...." src={ballLoading}/>:null}
       <h3>
         <strong> Welcome Back! </strong>
       </h3>

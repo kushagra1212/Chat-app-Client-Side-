@@ -41,6 +41,17 @@
    outline: none;
 
 }
+.loadingimg{
+    position: absolute;
+  width:100%;
+  height:100%;
+    z-index: 1;
+   
+  
+  
+  
+
+}
 .divlogin:hover{
     box-shadow: 2px 1px 10px rgba(190, 115, 252, 0.514);
 }
