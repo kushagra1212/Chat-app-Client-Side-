@@ -23,17 +23,20 @@ const history=useHistory();
     
       seterrorname("Enter User name ");
       e.preventDefault();
+      setloading(false);
     } else seterrorname("");
     if (!password) {
   
       seterrorpassword(`Enter your password`);
       e.preventDefault();
+      setloading(false);
     } else seterrorpassword("");
 
     if (!room) {
   
       seterrorroom("Enter your room");
       e.preventDefault();
+      setloading(false);
     } else seterrorroom("");
     if(name && password && room){
  axios.get(`${url}user?name=${name}&password=${password}`).then((res)=>{
@@ -42,7 +45,7 @@ const history=useHistory();
   history.push(`/chat?name=${name}&room=${room}`)
 
 }).catch(err=>{console.log(err)
-
+ setloading(false);
  alert('Please Register First ');
 })
     }
@@ -56,13 +59,14 @@ const runregister=()=>{
     {register?<Register  runregister={runregister}   />:
 
     <div className={Styles.maindiv}>
-       {loading?<img className={Styles.loadingimg} alt="Loading...." src={ballLoading}/>:null}
-      <h3>
+       {loading?<div className={Styles.loader}></div >:<>
+      <div className={Styles.welcome} ><h3>
         <strong> Welcome Back! </strong>
       </h3>
-      <h4>Join The Chat Now</h4>
+      <h4>Join The Chat Now</h4></div>
 
-      <input
+    <div className={Styles.form} >
+    <input
         type="text"
         placeholder="User name"
         value={name}
@@ -86,15 +90,16 @@ const runregister=()=>{
 
       />
       {<label style={{ color: "red" }}>{errorroom}</label>}
+    </div>
 
         <button className={Styles.divlogin} onClick={submithandle}>
           {" "}
           Join{" "}
         </button>
  
-      <br></br>
-<h5>Not Registered yet ?</h5>
-      <button onClick={runregister} className={Styles.divsignup}>register</button>
+    
+<h5 className={Styles.h5}  >Not Registered yet ?</h5>
+      <button onClick={runregister} className={Styles.divsignup}>register</button></>}
 
     
     </div>}</>

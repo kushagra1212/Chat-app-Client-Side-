@@ -25,29 +25,34 @@ axios.post(`${url}post`,{
    
     runregister();
 }).catch(err=>{
+    setloading(false);
     alert("User already exist please choose different username");
     console.log(err,"er")});
+ 
     }
     else if(!email || !name || !password){
         seterr({emailerr:false,empty:true})
     }
 else{
     seterr({emailerr:true,empty:false});
-}}
+}
+
+}
 
     return(
-        <>
+    
          <div  className={Styles.form} >
-             {loading?<h2>Loading...</h2>:null}
+             {loading?<div className={Styles.loader}>Loading...</div>:<>
              <label></label>
-             <input    type="text"  name="name" placeholder="Enter Username" value={name}  onChange={(e)=>setname(e.target.value.toLowerCase().substr(0,8))}    />
+             <button onClick={()=>runregister()} className={Styles.backbut}>back</button>
+           <div className={Styles.form2}>  <input    type="text"  name="name" placeholder="Enter Username" value={name}  onChange={(e)=>setname(e.target.value.toLowerCase().substr(0,8))}    />
         
-             <input   type="email" name="email" value={email}  placeholder="Enter your Email"     onChange={(e)=>setemail(e.target.value)}   />
-            {err.emailerr?<h4>Email is incorrect</h4>:null}
-             <input  type="password" name="password" placeholder="Enter your Password"  value={password}     onChange={(e)=>setpassword(e.target.value)}  />
+        <input   type="email" name="email" value={email}  placeholder="Enter your Email"     onChange={(e)=>setemail(e.target.value)}   />
+       {err.emailerr?<h4>Email is incorrect</h4>:null}
+        <input  type="password" name="password" placeholder="Enter your Password"  value={password}     onChange={(e)=>setpassword(e.target.value)}  /></div>
              <button className={Styles.submit} onClick={registrationhandle}   >Submit</button>
-             {err.empty?<h4>Field can't be Empty</h4>:null}
+             {err.empty?<h4>Field can't be Empty</h4>:null}</>}
          </div>
-        </>   )
+         )
 }
 export default Register;
