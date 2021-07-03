@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
 .form{
  
 
@@ -15,7 +16,7 @@
     box-shadow: 2px 2px 40px grey;
     left: 5%;
     top: 5%;
-
+    font-family: 'Lobster Two', cursive;
 }
 
 
